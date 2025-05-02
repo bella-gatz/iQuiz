@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func settingstapped(_ sender: Any) {
         // create the alert
-        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Settings go here", message: "", preferredStyle: UIAlertController.Style.alert)
 
         // add an action (button)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
