@@ -10,12 +10,14 @@ import UIKit
 class tableCell: UITableViewCell {
     @IBOutlet weak var cellName: UILabel!
     
+    @IBOutlet weak var cellText: UILabel!
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
         @IBOutlet weak var tableView: UITableView!
     
     var cellName = ["Mathematics", "Marvel Super Heroes", "Science"]
+    var cellText = ["Remember algebra?", "In which Marvel movie does Iron Man appear?", "What is the name of the first planet discovered by the Hubble Space Telescope?"]
 
     
     override func viewDidLoad() {
@@ -34,13 +36,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tableCell
         cell.cellName.text = cellName[indexPath.row]
+        cell.cellText.text = cellText[indexPath.row]
         return cell
     }
     
     
     // height of row at every index
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 100
     }
     
     
