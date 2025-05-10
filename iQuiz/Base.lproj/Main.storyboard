@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLu-Rp-ZXK">
-                                <rect key="frame" x="0.0" y="74" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="133" width="393" height="44"/>
                                 <items>
                                     <barButtonItem title="Home" id="OzH-cq-Jy3"/>
                                     <barButtonItem title="Settings" id="MCa-f1-Jfh">
@@ -28,7 +28,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gim-EQ-nIV">
-                                <rect key="frame" x="10" y="138" width="373" height="500"/>
+                                <rect key="frame" x="10" y="197" width="373" height="500"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="500" id="18s-wR-sfo"/>
@@ -108,46 +108,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xke-dR-Zja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443.5114503816794" y="0.70422535211267612"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="2ni-9a-Tcg">
-            <objects>
-                <viewController storyboardIdentifier="Settings" title="Settings" id="AqF-f2-dMF" customClass="Settings" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="t4N-gU-DT4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KzK-6Y-vT9">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Home" id="yG1-VN-Svb">
-                                        <connections>
-                                            <segue destination="rw5-xo-f6u" kind="presentation" modalPresentationStyle="fullScreen" id="Jxd-O4-ixp"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Settings" id="piv-cO-ypg"/>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings button triggers a UIAlertController displaying &quot;Settings go here&quot; with an &quot;OK&quot; button." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ra-Pd-zHs">
-                                <rect key="frame" x="-159.66666666666666" y="416" width="712.33333333333337" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="uer-OG-miQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7Ra-Pd-zHs" firstAttribute="centerX" secondItem="t4N-gU-DT4" secondAttribute="centerX" id="LVd-iX-6hj"/>
-                            <constraint firstItem="7Ra-Pd-zHs" firstAttribute="centerY" secondItem="t4N-gU-DT4" secondAttribute="centerY" id="XWF-Wg-UTQ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="U12-WK-OyT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PtH-Uz-03g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2268" y="-237"/>
         </scene>
     </scenes>
     <resources>
