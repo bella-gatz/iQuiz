@@ -15,7 +15,6 @@ class tableCell: UITableViewCell {
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
         @IBOutlet weak var tableView: UITableView!
-    
     var cellName = ["Mathematics", "Marvel Super Heroes", "Science"]
     var cellText = ["Remember algebra?", "Spiderman fan?", "Not zodiac based!"]
     var cellImage = ["mathIcon", "marvelIcon", "scienceIcon"]
