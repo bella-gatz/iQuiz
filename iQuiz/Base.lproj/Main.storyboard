@@ -67,15 +67,6 @@
                                                         <constraint firstAttribute="height" constant="42" id="bu3-IA-DwP"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhG-kY-S22">
-                                                    <rect key="frame" x="179" y="3" width="94" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="To Quiz 1"/>
-                                                    <connections>
-                                                        <segue destination="58f-NK-eBp" kind="presentation" modalPresentationStyle="fullScreen" id="0hs-bu-vEs"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="QbS-aH-Nug" secondAttribute="trailing" constant="250" id="62T-tZ-P30"/>
@@ -112,6 +103,7 @@
                     <navigationItem key="navigationItem" id="MoZ-uk-O2z"/>
                     <connections>
                         <outlet property="tableView" destination="Gim-EQ-nIV" id="Iy4-oa-I0q"/>
+                        <segue destination="58f-NK-eBp" kind="presentation" identifier="quiz" modalPresentationStyle="fullScreen" id="Axa-Pg-Dzx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xke-dR-Zja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -173,11 +165,12 @@
                     </view>
                     <connections>
                         <outlet property="answerSegment" destination="T8C-c1-TDG" id="IvR-A5-dwr"/>
+                        <outlet property="question" destination="e4H-6Y-MN1" id="sAN-rQ-Vbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dL-tX-EOi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2252.6717557251909" y="-258.45070422535213"/>
+            <point key="canvasLocation" x="2300" y="1"/>
         </scene>
         <!--MathA1-->
         <scene sceneID="E2S-Ak-3Yi">
@@ -222,7 +215,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Next"/>
                                 <connections>
-                                    <segue destination="qdn-bh-Vmv" kind="presentation" modalPresentationStyle="fullScreen" id="Wru-X9-8A0"/>
+                                    <segue destination="qdn-bh-Vmv" kind="presentation" identifier="a1toq2" modalPresentationStyle="fullScreen" id="Wru-X9-8A0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -242,17 +235,19 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="answer" destination="Bde-c2-Mn5" id="8Gl-XN-ecM"/>
                         <outlet property="correction" destination="Xmk-Zw-JYI" id="V2E-zd-ynU"/>
+                        <outlet property="question" destination="Hci-tb-awp" id="RoW-qb-PP2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iu7-DI-xJs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3026.7175572519081" y="-258.45070422535213"/>
+            <point key="canvasLocation" x="3074" y="1"/>
         </scene>
         <!--MathQ2-->
         <scene sceneID="2bS-KL-G16">
             <objects>
-                <viewController storyboardIdentifier="MathQ2" title="MathQ2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qdn-bh-Vmv" customClass="MathQ1ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MathQ2" title="MathQ2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qdn-bh-Vmv" customClass="MathQ2ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XOY-b0-jsY">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,16 +274,13 @@
                                     <segment title="x + c"/>
                                     <segment title="c"/>
                                 </segments>
-                                <connections>
-                                    <action selector="answer:" destination="qdn-bh-Vmv" eventType="valueChanged" id="fD6-DS-bhG"/>
-                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INI-0g-40R">
                                 <rect key="frame" x="290" y="159" width="78" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Submit"/>
                                 <connections>
-                                    <segue destination="yWp-b7-Nfi" kind="presentation" modalPresentationStyle="fullScreen" id="IWJ-qv-EUt"/>
+                                    <segue destination="yWp-b7-Nfi" kind="presentation" identifier="q2toa2" modalPresentationStyle="fullScreen" id="IWJ-qv-EUt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -305,15 +297,19 @@
                             <constraint firstItem="I0D-BY-huQ" firstAttribute="centerX" secondItem="XOY-b0-jsY" secondAttribute="centerX" id="sHY-nv-UMq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answerSegment" destination="I0D-BY-huQ" id="S3f-vN-H4D"/>
+                        <outlet property="question" destination="JwJ-K0-lJH" id="un8-LL-WXO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTK-kM-IjS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3831" y="-258"/>
+            <point key="canvasLocation" x="3877" y="1"/>
         </scene>
         <!--MathA2-->
         <scene sceneID="MOp-QZ-dIh">
             <objects>
-                <viewController storyboardIdentifier="MathA2" title="MathA2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWp-b7-Nfi" customClass="MathQ1ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MathA2" title="MathA2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yWp-b7-Nfi" customClass="MathA2ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZmK-Rk-wMe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -347,7 +343,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Next"/>
                                 <connections>
-                                    <segue destination="vW4-6x-Ke9" kind="presentation" modalPresentationStyle="fullScreen" id="baR-Fa-764"/>
+                                    <segue destination="vW4-6x-Ke9" kind="presentation" identifier="a2toanswers" modalPresentationStyle="fullScreen" id="baR-Fa-764"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eby-EY-ptK">
@@ -372,15 +368,20 @@
                             <constraint firstItem="r4V-Lj-TMj" firstAttribute="centerY" secondItem="ZmK-Rk-wMe" secondAttribute="centerY" id="z6e-Hb-NRb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answer" destination="eby-EY-ptK" id="ElC-8Q-dXO"/>
+                        <outlet property="correction" destination="r4V-Lj-TMj" id="nQJ-VG-5fV"/>
+                        <outlet property="question" destination="9Ri-ay-RKg" id="Igg-Tn-VyF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pG8-H8-sZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4593" y="-258"/>
+            <point key="canvasLocation" x="4639" y="1"/>
         </scene>
         <!--MathAnswers-->
         <scene sceneID="ig1-LO-KRq">
             <objects>
-                <viewController storyboardIdentifier="MathAnswers" title="MathAnswers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vW4-6x-Ke9" customClass="MathQ1ViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MathAnswers" title="MathAnswers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vW4-6x-Ke9" customClass="MathAnswersViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="If8-Fv-Cus">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -435,14 +436,18 @@
                             <constraint firstItem="0Hn-2j-Aqj" firstAttribute="centerX" secondItem="If8-Fv-Cus" secondAttribute="centerX" id="zfw-oz-yVJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="message" destination="0Hn-2j-Aqj" id="zPA-g1-eZM"/>
+                        <outlet property="scoreDisplay" destination="eMJ-Ji-7Cg" id="PZp-8z-7Lt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t4p-Y0-dRR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5425" y="-258"/>
+            <point key="canvasLocation" x="5471" y="1"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wi0-wd-Rj7"/>
+        <segue reference="VxC-nK-lHQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

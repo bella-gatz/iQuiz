@@ -12,21 +12,38 @@ class MathA1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if correctIndex == selectedIndex {
+        question.text = quiz?[0].question
+        answer.text = quiz?[0].answers[(quiz?[0].correctIndex)!]
+        
+        if quiz?[0].correctIndex == selectedIndex {
             correction.text = "Correct!"
             print("Correct!")
+            score += 1
+            
         } else {
             correction.text = "Incorrect!"
             print("Incorrect!")
         }
+        print(score)
         // Do any additional setup after loading the view.
     }
     
     @IBOutlet weak var correction: UILabel!
     
-    var correctIndex: Int?
     var selectedIndex: Int?
-    
+    var score = 0
+    var quiz: [QuizQuestion]?
+    @IBOutlet weak var question: UILabel!
 
+    @IBOutlet weak var answer: UILabel!
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "a1toq2" {
+            if let destinationVC = segue.destination as? MathQ2ViewController {
+                destinationVC.score = score
+                destinationVC.quiz =  quiz
+            }
+        }
+    }
     
 }
