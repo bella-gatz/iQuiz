@@ -22,7 +22,8 @@
                                     <barButtonItem title="Home" id="OzH-cq-Jy3"/>
                                     <barButtonItem title="Settings" id="MCa-f1-Jfh">
                                         <connections>
-                                            <action selector="settingstapped:" destination="rw5-xo-f6u" id="bGH-rH-d7a"/>
+                                            <action selector="settingsTapped:" destination="rw5-xo-f6u" id="LeU-Gt-upg"/>
+                                            <segue destination="MS0-dz-MGf" kind="presentation" modalPresentationStyle="fullScreen" id="tlh-5L-et5"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -109,6 +110,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xke-dR-Zja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1443.5114503816794" y="0.70422535211267612"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="naC-vl-RG1">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="MS0-dz-MGf" customClass="SettingsViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fxS-3J-Rzh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQL-WH-3uH">
+                                <rect key="frame" x="140.66666666666666" y="408.66666666666669" width="112" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Check Now"/>
+                                <connections>
+                                    <action selector="newHttp:" destination="MS0-dz-MGf" eventType="touchUpInside" id="klf-ta-DDs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To add a new URL, delete the current one, and add new URL here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1A-2o-0Lg">
+                                <rect key="frame" x="50" y="259" width="293" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3K9-n3-PhS">
+                                <rect key="frame" x="20" y="59" width="62" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Back"/>
+                                <connections>
+                                    <segue destination="rw5-xo-f6u" kind="presentation" modalPresentationStyle="fullScreen" id="h88-Z4-bOu"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teh-I7-frb">
+                                <rect key="frame" x="50" y="334.66666666666669" width="293" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WYi-M8-7UP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="teh-I7-frb" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="50" id="6ch-3e-6bI"/>
+                            <constraint firstItem="teh-I7-frb" firstAttribute="top" secondItem="P1A-2o-0Lg" secondAttribute="bottom" constant="35" id="9NJ-uf-34L"/>
+                            <constraint firstItem="P1A-2o-0Lg" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="50" id="Dfu-a8-2XM"/>
+                            <constraint firstItem="3K9-n3-PhS" firstAttribute="top" secondItem="WYi-M8-7UP" secondAttribute="top" id="T33-nl-oJh"/>
+                            <constraint firstItem="3K9-n3-PhS" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="20" id="cBC-bS-Fet"/>
+                            <constraint firstItem="WYi-M8-7UP" firstAttribute="trailing" secondItem="teh-I7-frb" secondAttribute="trailing" constant="50" id="cTZ-qe-fz2"/>
+                            <constraint firstAttribute="trailing" secondItem="P1A-2o-0Lg" secondAttribute="trailing" constant="50" id="fw5-hQ-hkX"/>
+                            <constraint firstItem="P1A-2o-0Lg" firstAttribute="top" secondItem="WYi-M8-7UP" secondAttribute="top" constant="200" id="ptl-g5-5QS"/>
+                            <constraint firstItem="OQL-WH-3uH" firstAttribute="centerY" secondItem="fxS-3J-Rzh" secondAttribute="centerY" id="wis-f5-DC0"/>
+                            <constraint firstItem="P1A-2o-0Lg" firstAttribute="centerX" secondItem="fxS-3J-Rzh" secondAttribute="centerX" id="yYn-VH-x1J"/>
+                            <constraint firstItem="OQL-WH-3uH" firstAttribute="centerX" secondItem="fxS-3J-Rzh" secondAttribute="centerX" id="yqJ-7N-FjL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="url" destination="teh-I7-frb" id="kAe-rZ-y5L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q3J-9M-w6i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="691"/>
         </scene>
         <!--MathQ1-->
         <scene sceneID="vgf-3G-wpA">
@@ -447,7 +508,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VxC-nK-lHQ"/>
+        <segue reference="h88-Z4-bOu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

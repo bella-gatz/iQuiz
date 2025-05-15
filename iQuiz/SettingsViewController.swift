@@ -1,21 +1,30 @@
 //
-//  Settings.swift
+//  SettingsViewController.swift
 //  iQuiz
 //
-//  Created by Bella Gatzemeier on 5/2/25.
+//  Created by Bella Gatzemeier on 5/14/25.
 //
 
 import UIKit
 
-class Settings: UIViewController {
+class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        url.text = "http://tednewardsandbox.site44.com/questions.json"
         // Do any additional setup after loading the view.
     }
     
 
+    @IBOutlet weak var url: UITextField!
+    
+    @IBAction func newHttp(_ sender: Any) {
+        // TODO: http call
+        // TODO: send json data to quiz!
+        // TODO: notification if error in call
+    }
+    
+    
     /*
     // MARK: - Navigation
 

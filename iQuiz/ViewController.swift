@@ -68,18 +68,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 100
     }
     
-
-    
-    @IBAction func settingstapped(_ sender: Any) {
-        // create the alert
-        let alert = UIAlertController(title: "Settings go here", message: "", preferredStyle: UIAlertController.Style.alert)
+    @IBAction func settingsTapped(_ sender: Any) {
         
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
     }
+    
+    
+//    @IBAction func settingstapped(_ sender: Any) {
+//        // create the alert
+//        let alert = UIAlertController(title: "Settings go here", message: "", preferredStyle: UIAlertController.Style.alert)
+//        
+//        // add an action (button)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//        
+//        // show the alert
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedQuiz = cellName[indexPath.row]
