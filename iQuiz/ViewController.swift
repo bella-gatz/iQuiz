@@ -20,24 +20,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        loadQuizzes(url: defaultURL)
         
-        var request = URLRequest(url: URL(string: "https://tednewardsandbox.site44.com/questions.json")!)
+    }
+    
+    @IBOutlet weak var tableView: UITableView!
+    var cellName: [String] = []
+    var cellText: [String] = []
+    var cellImage = ["mathIcon", "marvelIcon", "scienceIcon"]
+    var selectedQuiz: String = ""
+    var quizzes: [Quiz] = []
+    var mathQuiz: [QuizQuestion] = []
+    var marvelQuiz: [QuizQuestion] = []
+    var scienceQuiz: [QuizQuestion] = []
+    var defaultURL: String = "https://tednewardsandbox.site44.com/questions.json"
+
+    // sets up table size rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellName.count
+    }
+    
+    // sets up data in each cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tableCell
+        cell.cellName.text = cellName[indexPath.row]
+        cell.cellText.text = cellText[indexPath.row]
+        cell.cellImage.image = UIImage(named: cellImage[indexPath.row])
+        return cell
+    }
+    
+    
+    // height of row at every index
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedQuiz = cellName[indexPath.row]
+        print(selectedQuiz)
+        performSegue(withIdentifier: "quiz", sender: self)
+    }
+    
+    func loadQuizzes(url: String) {
+        guard !url.isEmpty else {
+            callError()
+            return
+        }
+        
+        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         
         (URLSession.shared.dataTask(with: request) { data, response, error
             in DispatchQueue.main.async {
                 if error != nil {
                     print("HTTP Request Error: \(error!.localizedDescription)")
+                    self.callError()
                 } else {
                     guard let httpresponse = response as? HTTPURLResponse else {
-                        print("error")
+                        self.callError()
                         return
                     }
                   
                     print(httpresponse.statusCode)
                   
                     if data == nil {
-                        print("error")
+                        self.callError()
                         return
                     } else {
                         do {
@@ -69,54 +116,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             } else {
                                 self.cellName = ["Network Error"]
                                 self.cellText = [""]
+                                self.callError()
                             }
                         } catch {
                             print("Error in JSON decoding: \(error.localizedDescription)")
+                            self.callError()
                         }
                   }
                 }
               }
             }).resume()
-        
-        print(quizzes)
-        
     }
     
-    @IBOutlet weak var tableView: UITableView!
-    var cellName: [String] = []
-    var cellText: [String] = []
-    var cellImage = ["mathIcon", "marvelIcon", "scienceIcon"]
-    var selectedQuiz: String = ""
-    var quizzes: [Quiz] = []
-    var mathQuiz: [QuizQuestion] = []
-    var marvelQuiz: [QuizQuestion] = []
-    var scienceQuiz: [QuizQuestion] = []
-
-    // sets up table size rows
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellName.count
+    func callError() {
+        let alert = UIAlertController(title: "Network Error", message: "Invalid URL", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        loadQuizzes(url: defaultURL)
     }
     
-    // sets up data in each cell
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! tableCell
-        cell.cellName.text = cellName[indexPath.row]
-        cell.cellText.text = cellText[indexPath.row]
-        cell.cellImage.image = UIImage(named: cellImage[indexPath.row])
-        return cell
-    }
-    
-    
-    // height of row at every index
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedQuiz = cellName[indexPath.row]
-        print(selectedQuiz)
-        performSegue(withIdentifier: "quiz", sender: self)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "quiz" {
