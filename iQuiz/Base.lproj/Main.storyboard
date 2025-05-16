@@ -138,7 +138,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Back"/>
                                 <connections>
-                                    <segue destination="rw5-xo-f6u" kind="presentation" modalPresentationStyle="fullScreen" id="h88-Z4-bOu"/>
+                                    <segue destination="rw5-xo-f6u" kind="presentation" identifier="tomain" modalPresentationStyle="fullScreen" id="h88-Z4-bOu"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teh-I7-frb">
@@ -207,6 +207,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Submit"/>
                                 <connections>
+                                    <action selector="buttonTapped:" destination="58f-NK-eBp" eventType="touchUpInside" id="jNK-WN-DhZ"/>
                                     <segue destination="YOL-js-wdv" kind="presentation" identifier="q1toa1" modalPresentationStyle="fullScreen" id="xP7-Sd-iuB"/>
                                 </connections>
                             </button>
@@ -508,7 +509,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="h88-Z4-bOu"/>
+        <segue reference="wi0-wd-Rj7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

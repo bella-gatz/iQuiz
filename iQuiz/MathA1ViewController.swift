@@ -12,10 +12,12 @@ class MathA1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        question.text = quiz?[0].question
-        answer.text = quiz?[0].answers[(quiz?[0].correctIndex)!]
+        question.text = quiz?[0].text
         
-        if quiz?[0].correctIndex == selectedIndex {
+        let index = Int((quiz?[0].answer)!)! - 1
+        answer.text = quiz?[0].answers[index]
+        
+        if index == selectedIndex {
             correction.text = "Correct!"
             print("Correct!")
             score += 1

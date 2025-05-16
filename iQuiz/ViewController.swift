@@ -13,41 +13,62 @@ class tableCell: UITableViewCell {
     @IBOutlet weak var cellText: UILabel!
 }
 
-struct QuizQuestion {
-    let question: String
-    let answers: [String]
-    let correctIndex: Int
-}
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
-    var cellName = ["Mathematics", "Marvel Super Heroes", "Science"]
-    var cellText = ["Remember algebra?", "Spiderman fan?", "Not zodiac based!"]
-    var cellImage = ["mathIcon", "marvelIcon", "scienceIcon"]
-    var selectedQuiz: String = ""
-    
-    
-    var mathQuiz: [QuizQuestion] = [
-        QuizQuestion(question: "What is the integral of x?", answers: ["0", "x", "x + C", "x^2 + C"], correctIndex: 2),
-        QuizQuestion(question: "What is the derivative of 1?", answers: ["0", "x", "x + C", "x^2 + C"], correctIndex: 0)]
-    
-    var marvelQuiz: [QuizQuestion] = [
-        QuizQuestion(question: "What hero uses spiderwebs?", answers: ["Superman", "Spiderman", "Ironman", "The Hulk"], correctIndex: 1),
-        QuizQuestion(question: "How many inifity stones are there?", answers: ["7", "8", "6", "5"], correctIndex: 1)
-    ]
-
-    var scienceQuiz: [QuizQuestion] = [
-        QuizQuestion(question: "What is the atomic number for copper?", answers: ["47", "21", "28", "29"], correctIndex: 3),
-        QuizQuestion(question: "How many elements in the atomic table?", answers: ["120", "118", "100", "133"], correctIndex: 2)
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        
+        if quizzes.count > 0 {
+            for quiz in quizzes {
+                cellName.append(quiz.title)
+                cellText.append(quiz.desc)
+                for question in quiz.questions {
+                    if quiz.title == "Mathematics" {
+                        mathQuiz.append(question)
+                    } else if quiz.title == "Marvel Super Heroes" {
+                        marvelQuiz.append(question)
+                    } else if quiz.title == "Science!" {
+                        scienceQuiz.append(question)
+                    }
+                }
+            }
+        } else {
+            cellName = ["Mathematics", "Marvel Super Heroes", "Science"]
+            cellText = ["Remember algebra?", "Spiderman fan?", "Not zodiac based!"]
+//            mathQuiz = [
+//                QuizQuestion(text: "What is the integral of x?", answer: "3", answers: ["0", "x", "x + C", "x^2 + C"]),
+//                QuizQuestion(text: "What is the derivative of 1?" , answer: "1", answers: ["0", "x", "x + C", "x^2 + C"])
+//            ]
+//            marvelQuiz = [
+//                QuizQuestion(text: "What hero uses spiderwebs?", answer: "2", answers: ["Superman", "Spiderman", "Ironman", "The Hulk"]),
+//                QuizQuestion(text: "How many inifity stones are there?", answer: "3", answers: ["7", "8", "6", "5"])
+//            ]
+//        
+//            scienceQuiz = [
+//                QuizQuestion(text: "What is the atomic number for copper?", answer: "4", answers: ["47", "21", "28", "29"]),
+//                QuizQuestion(text: "How many elements in the atomic table?", answer: "3" , answers: ["120", "118", "100", "133"])
+//            ]
+            
+        }
+        
+        // TODO: questions to quiz
     }
     
+    @IBOutlet weak var tableView: UITableView!
+    var cellName: [String] = []
+    var cellText: [String] = []
+    var cellImage = ["mathIcon", "marvelIcon", "scienceIcon"]
+    var selectedQuiz: String = ""
+    var quizzes: [Quiz] = []
+    var mathQuiz: [QuizQuestion] = []
+    var marvelQuiz: [QuizQuestion] = []
+    var scienceQuiz: [QuizQuestion] = []
+
     // sets up table size rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellName.count
@@ -72,18 +93,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
-//    @IBAction func settingstapped(_ sender: Any) {
-//        // create the alert
-//        let alert = UIAlertController(title: "Settings go here", message: "", preferredStyle: UIAlertController.Style.alert)
-//        
-//        // add an action (button)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-//        
-//        // show the alert
-//        self.present(alert, animated: true, completion: nil)
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedQuiz = cellName[indexPath.row]
         print(selectedQuiz)
@@ -96,15 +105,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 destinationVC.quizTopic = selectedQuiz
                 if selectedQuiz == "Mathematics" {
                     destinationVC.quiz = mathQuiz
+                    destinationVC.totalPages = mathQuiz.count
                 } else if selectedQuiz == "Marvel Super Heroes" {
                     destinationVC.quiz = marvelQuiz
-
+                    destinationVC.totalPages = marvelQuiz.count
                 } else {
                     destinationVC.quiz = scienceQuiz
-
+                    destinationVC.totalPages = scienceQuiz.count
                 }
             }
-        }
+        } 
         
     }
     

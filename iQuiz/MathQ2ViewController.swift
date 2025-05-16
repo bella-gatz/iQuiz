@@ -12,7 +12,7 @@ class MathQ2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        question.text = quiz?[1].question
+        question.text = quiz?[1].text
         
         var index = 0
         for (answer) in quiz![1].answers {
@@ -36,6 +36,6 @@ class MathQ2ViewController: UIViewController {
                 destinationVC.score = score!
                 destinationVC.quiz = quiz
             }
-        }
+        } 
     }
 }
