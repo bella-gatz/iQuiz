@@ -12,36 +12,35 @@ class MathQ1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        question.text = quiz?[0].text
+        question.text = quiz?[currPage].text
         totalPages = quiz!.count
-        print(totalPages)
-        print(quiz)
-//        var index = 0
-//        for (answer) in quiz![0].answers {
-//            answerSegment.setTitle(answer, forSegmentAt: index)
-//            index += 1
-//        }
+
+        var index = 0
+        for (answer) in quiz![currPage].answers {
+            answerSegment.setTitle(answer, forSegmentAt: index)
+            index += 1
+        }
         // Do any additional setup after loading the view.
     }
     
     var quizTopic: String?
     var quiz: [QuizQuestion]?
-    var currPage = 0
-    var totalPages: Int = 0
+    var currPage: Int = 0
+    var totalPages: Int?
+    var score: Int = 0
     
     @IBOutlet weak var answerSegment: UISegmentedControl!
     @IBOutlet weak var question: UILabel!
     
     
-    @IBAction func buttonTapped(_ sender: Any) {
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "q1toa1" {
+        if segue.identifier == "answer" {
             if let destinationVC = segue.destination as? MathA1ViewController {
-                destinationVC.selectedIndex = answerSegment.selectedSegmentIndex
                 destinationVC.quiz = quiz
+                destinationVC.currPage = currPage
+                destinationVC.totalPage = totalPages
+                destinationVC.selectedIndex = answerSegment.selectedSegmentIndex
+                destinationVC.score = score
             }
         }
     }

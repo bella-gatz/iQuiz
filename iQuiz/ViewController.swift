@@ -13,8 +13,6 @@ class tableCell: UITableViewCell {
     @IBOutlet weak var cellText: UILabel!
 }
 
-
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
@@ -23,40 +21,65 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.delegate = self
         
-        if quizzes.count > 0 {
-            for quiz in quizzes {
-                cellName.append(quiz.title)
-                cellText.append(quiz.desc)
-                for question in quiz.questions {
-                    if quiz.title == "Mathematics" {
-                        mathQuiz.append(question)
-                    } else if quiz.title == "Marvel Super Heroes" {
-                        marvelQuiz.append(question)
-                    } else if quiz.title == "Science!" {
-                        scienceQuiz.append(question)
-                    }
-                }
-            }
-        } else {
-            cellName = ["Mathematics", "Marvel Super Heroes", "Science"]
-            cellText = ["Remember algebra?", "Spiderman fan?", "Not zodiac based!"]
-//            mathQuiz = [
-//                QuizQuestion(text: "What is the integral of x?", answer: "3", answers: ["0", "x", "x + C", "x^2 + C"]),
-//                QuizQuestion(text: "What is the derivative of 1?" , answer: "1", answers: ["0", "x", "x + C", "x^2 + C"])
-//            ]
-//            marvelQuiz = [
-//                QuizQuestion(text: "What hero uses spiderwebs?", answer: "2", answers: ["Superman", "Spiderman", "Ironman", "The Hulk"]),
-//                QuizQuestion(text: "How many inifity stones are there?", answer: "3", answers: ["7", "8", "6", "5"])
-//            ]
-//        
-//            scienceQuiz = [
-//                QuizQuestion(text: "What is the atomic number for copper?", answer: "4", answers: ["47", "21", "28", "29"]),
-//                QuizQuestion(text: "How many elements in the atomic table?", answer: "3" , answers: ["120", "118", "100", "133"])
-//            ]
-            
-        }
+        var request = URLRequest(url: URL(string: "https://tednewardsandbox.site44.com/questions.json")!)
+        request.httpMethod = "GET"
         
-        // TODO: questions to quiz
+        (URLSession.shared.dataTask(with: request) { data, response, error
+            in DispatchQueue.main.async {
+                if error != nil {
+                    print("HTTP Request Error: \(error!.localizedDescription)")
+                } else {
+                    guard let httpresponse = response as? HTTPURLResponse else {
+                        print("error")
+                        return
+                    }
+                  
+                    print(httpresponse.statusCode)
+                  
+                    if data == nil {
+                        print("error")
+                        return
+                    } else {
+                        do {
+                            let quizzes = try JSONDecoder().decode([Quiz].self, from: data!)
+                            self.quizzes = quizzes
+                            
+                            
+                            self.cellName = []
+                            self.cellText = []
+                            self.mathQuiz = []
+                            self.marvelQuiz = []
+                            self.scienceQuiz = []
+                            
+                            if quizzes.count > 0 {
+                                for quiz in quizzes {
+                                    self.cellName.append(quiz.title)
+                                    self.cellText.append(quiz.desc)
+                                    for question in quiz.questions {
+                                        if quiz.title == "Mathematics" {
+                                            self.mathQuiz.append(question)
+                                        } else if quiz.title == "Marvel Super Heroes" {
+                                            self.marvelQuiz.append(question)
+                                        } else if quiz.title == "Science!" {
+                                            self.scienceQuiz.append(question)
+                                        }
+                                    }
+                                }
+                                self.tableView.reloadData()
+                            } else {
+                                self.cellName = ["Network Error"]
+                                self.cellText = [""]
+                            }
+                        } catch {
+                            print("Error in JSON decoding: \(error.localizedDescription)")
+                        }
+                  }
+                }
+              }
+            }).resume()
+        
+        print(quizzes)
+        
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -87,10 +110,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // height of row at every index
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
-    }
-    
-    @IBAction func settingsTapped(_ sender: Any) {
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -23,15 +23,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var url: UITextField!
     
     @IBAction func newHttp(_ sender: Any) {
-        guard let urlText = url.text, let realURL = URL(string: urlText) else {
-            self.callError()
-            return
-        }
-        
-        var request = URLRequest(url: realURL)
+        var request = URLRequest(url: URL(string: "https://tednewardsandbox.site44.com/questions.json")!)
         request.httpMethod = "GET"
         
-        print("requesting: \(urlText)")
+        print("requesting: \(url.text)")
         
         (URLSession.shared.dataTask(with: request) { data, response, error
             in DispatchQueue.main.async {
@@ -40,9 +35,7 @@ class SettingsViewController: UIViewController {
                     self.callError()
                 } else {
                     guard let httpresponse = response as? HTTPURLResponse else {
-                        let alert = UIAlertController(title: "Network Error", message: "Invalid URL", preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        self.callError()
                         return
                     }
                   
@@ -56,7 +49,6 @@ class SettingsViewController: UIViewController {
                         self.callError()
                         return
                     } else {
-//                        print("Body \n \(String(describing: String(data: data!, encoding: .utf8)))")
                         do {
                             let quizzes = try JSONDecoder().decode([Quiz].self, from: data!)
                             print("Quizzes: \n \(quizzes)")
@@ -69,8 +61,6 @@ class SettingsViewController: UIViewController {
                 }
               }
             }).resume()
-        
-        // TODO: notification if error in call
     }
     
     func callError() {
