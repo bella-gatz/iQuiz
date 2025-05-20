@@ -145,6 +145,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEo-yF-q7Z">
+                                <rect key="frame" x="153" y="493.66666666666669" width="87" height="35.000000000000057"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Settings"/>
+                                <connections>
+                                    <action selector="openSettings:" destination="MS0-dz-MGf" eventType="touchUpInside" id="0vL-ot-nBd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WYi-M8-7UP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -152,6 +160,8 @@
                             <constraint firstItem="teh-I7-frb" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="50" id="6ch-3e-6bI"/>
                             <constraint firstItem="teh-I7-frb" firstAttribute="top" secondItem="P1A-2o-0Lg" secondAttribute="bottom" constant="35" id="9NJ-uf-34L"/>
                             <constraint firstItem="P1A-2o-0Lg" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="50" id="Dfu-a8-2XM"/>
+                            <constraint firstItem="vEo-yF-q7Z" firstAttribute="centerX" secondItem="fxS-3J-Rzh" secondAttribute="centerX" id="Iqc-zp-e24"/>
+                            <constraint firstItem="vEo-yF-q7Z" firstAttribute="top" secondItem="OQL-WH-3uH" secondAttribute="bottom" constant="50" id="LCQ-m8-kpG"/>
                             <constraint firstItem="3K9-n3-PhS" firstAttribute="top" secondItem="WYi-M8-7UP" secondAttribute="top" id="T33-nl-oJh"/>
                             <constraint firstItem="3K9-n3-PhS" firstAttribute="leading" secondItem="WYi-M8-7UP" secondAttribute="leading" constant="20" id="cBC-bS-Fet"/>
                             <constraint firstItem="WYi-M8-7UP" firstAttribute="trailing" secondItem="teh-I7-frb" secondAttribute="trailing" constant="50" id="cTZ-qe-fz2"/>
@@ -163,7 +173,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="url" destination="teh-I7-frb" id="kAe-rZ-y5L"/>
+                        <outlet property="urlTextField" destination="teh-I7-frb" id="Vul-yf-Wg0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3J-9M-w6i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -378,7 +388,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Lvb-uN-Q3S"/>
+        <segue reference="Axa-Pg-Dzx"/>
         <segue reference="h88-Z4-bOu"/>
     </inferredMetricsTieBreakers>
     <resources>
